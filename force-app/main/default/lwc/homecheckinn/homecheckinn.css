@@ -1,0 +1,12 @@
+.main-div{
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 1;
+    background-color: #EFEFEF;
+}
+
+.info{
+    width: 300x;
+    height: 600px;
+}
