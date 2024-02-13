@@ -1,0 +1,40 @@
+<template>
+
+    <div class="main-div">
+        <lightning-layout multiple-rows>
+
+
+            <!-- Text -->
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="5" large-device-size="5">
+                <div class="info slds-box">
+                    <h1 class="slds-text-heading_large"> Hello, there!</h1>
+                    <p class="slds-text-heading_small slds-m-top_small">Enter your personal details and start journey
+                        with
+                        us.</p>
+                    <button class="slds-m-top_large custom-button" onclick={OnclickOfSignUp}>SIGN UP</button>
+                </div>
+            </lightning-layout-item>
+
+
+
+
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="7" large-device-size="7">
+                <div class="signup slds-box">
+                    <h1 class="create-account slds-text-heading_large">Create Account</h1>
+                    <lightning-input class="input" type="text" placeholder="Firstname" value={FirstName}
+                        onblur={handleFirstNameChange}></lightning-input>
+                    <lightning-input class="input" type="text" placeholder="LastName" value={LastName}
+                        onblur={handleLastNameChange}></lightning-input>
+                    <lightning-input class="input" type="email" placeholder="Email" value={Email}
+                        onblur={handleEmailChange}></lightning-input>
+                    <lightning-input class="input" type="password" placeholder="Enter Password" value={Password}
+                        onblur={handlePasswordChange}></lightning-input>
+                    <lightning-input class="input" type="password" placeholder="Confirm Password"
+                        value={ConfirmPassword} onblur={handleConfirmPasswordChange}></lightning-input>
+
+                    <button class="slds-m-top_small custom-button2" onclick={handleClickSignUp}>SIGN UP</button>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>
