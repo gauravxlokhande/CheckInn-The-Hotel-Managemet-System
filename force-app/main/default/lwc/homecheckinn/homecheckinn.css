@@ -1,12 +1,46 @@
 .main-div{
-    position: absolute;
     right: 0;
     left: 0;
     top: 1;
-    background-color: #EFEFEF;
 }
 
 .info{
     width: 300x;
     height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.contact-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: burlywood;
+    box-shadow: 5px 5px 5px black;
+}
+.custome-box{
+    width: 250px;
+    height: 250px;
+    background-color: burlywood;
+    box-shadow: 5px 5px 5px black;
+    margin-left: 67px;
+}
+.custome-box:hover {
+    background-color: aliceblue;
+    transform: scale(1.1); /* Added scale effect on hover */
+}
+.textheading{
+    font-size: 100px;
+    font-family: 'Times New Roman';
+}
+.avalable-rooms{
+    margin-top: 20px;
+}
+.checkinn{
+    padding: 10px;
+    margin-top: 17px;
 }

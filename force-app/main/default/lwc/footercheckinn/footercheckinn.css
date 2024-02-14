@@ -1,0 +1,10 @@
+.society-footer {
+    background-color: gray;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    position: static;
+    bottom: 0;
+    width: 100%;
+
+}

@@ -29,7 +29,7 @@ export default class Homecheckinn extends LightningElement {
                         this.HotelName = hotel.Name,
                         this.OccupiedRooms = hotel.Occupied_Rooms__c,
                         this.Phone = hotel.Phone__c,
-                        this.TotalRooms =Total_Rooms__c
+                        this.TotalRooms = hotel.Total_Rooms__c;
                 });
 
         }).catch((error) => {
