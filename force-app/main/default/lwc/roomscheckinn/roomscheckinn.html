@@ -1,3 +1,218 @@
 <template>
-    
+    <div class="main-div">
+
+        <!-- LWC CAROSAL -->
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12"
+                padding="horizontal-small">
+                <lightning-carousel>
+                    <lightning-carousel-image src={HotelRoom1} header="Single Rooms"
+                        description="Single Room: Cozy retreat for solo travelers, featuring a comfortable bed and essential amenities for relaxation and privacy after a day of exploring."
+                        alternative-text="This is a card" href="">
+                    </lightning-carousel-image>
+                    <lightning-carousel-image src={HotelRoom2} header="Double Rooms"
+                        description="Double Room: Spacious accommodation for two, with a large bed, extra amenities, and a cozy atmosphere perfect for couples or friends traveling together."
+                        alternative-text="This is a card" href="">
+                    </lightning-carousel-image>
+                </lightning-carousel>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <!-- Row 1 -->
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" small-device-size="4" medium-device-size="4" large-device-size="4"
+                padding="horizontal-small">
+                <div class="first-view slds-box">
+                    <div class="slds-text-heading_large slds-align_absolute-center">Filter rooms based on room types
+                    </div>
+                    <div class=" roomtypes slds-text-heading_medium slds-m-top_medium  slds-text-align_center"
+                        onclick={OnClickRoomTypes} data-name="All Rooms">
+                        ALL ROOMS </div>
+                    <div class=" roomtypes slds-text-heading_medium slds-m-top_medium  slds-text-align_center "
+                        onclick={OnClickRoomTypes} data-name="Single">
+                        SINGLE ROOMS </div>
+                    <div class=" roomtypes slds-text-heading_medium slds-m-top_medium  slds-text-align_center"
+                        onclick={OnClickRoomTypes} data-name="Double">
+                        DOUBLE ROOMS</div>
+                    <div class=" roomtypes slds-text-heading_medium slds-m-top_medium  slds-text-align_center"
+                        onclick={OnClickRoomTypes} data-name="Deluxe Room"> DELUXE ROOMS</div>
+                    <div class=" roomtypes slds-text-heading_medium slds-m-top_medium  slds-text-align_center"
+                        onclick={OnClickRoomTypes} data-name="Connecting rooms">
+                        CONNECTING ROOMS</div>
+                    <div class=" roomtypes slds-text-heading_medium slds-m-top_medium  slds-text-align_center"
+                        onclick={OnClickRoomTypes} data-name="Suite">SUIT
+                    </div>
+                </div>
+            </lightning-layout-item>
+
+
+            <!-- Template one -->
+            <template if:true={AllRoomsTemplate}>
+                <lightning-layout-item size="12" small-device-size="8" medium-device-size="8" large-device-size="8"
+                    padding="horizontal-small">
+                    <template for:each={AvailableRooms} for:item="room">
+                        <div key={room.Id} class="all-rooms slds-box">
+                            <div class="image">
+                                <lightning-formatted-rich-text
+                                    value={room.Room_Image__c}></lightning-formatted-rich-text>
+                            </div>
+                            <div class="room-info">
+                                <div class="slds-text-heading_large">{room.Hotel__r.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Room_Type__c}</div>
+                                <div class="slds-text-heading_medium">{room.Status__c}</div>
+                                <div class="slds-text-heading_medium">₹{room.Rate__c}</div>
+                                <div class="slds-align_absolute-center slds-m-top_medium">
+                                    <lightning-button variant="brand" label="Book Room"
+                                        onclick={handleClickofBookRoom}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Template two -->
+            <template if:true={SingleRomsTemplate}>
+                <lightning-layout-item size="12" small-device-size="8" medium-device-size="8" large-device-size="8"
+                    padding="horizontal-small">
+                    <template for:each={SingleRooms} for:item="room">
+                        <div key={room.Id} class="all-rooms slds-box">
+                            <div class="image">
+                                <lightning-formatted-rich-text
+                                    value={room.Room_Image__c}></lightning-formatted-rich-text>
+                            </div>
+                            <div class="room-info">
+                                <div class="slds-text-heading_large">{room.Hotel__r.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Room_Type__c}</div>
+                                <div class="slds-text-heading_medium">{room.Status__c}</div>
+                                <div class="slds-text-heading_medium">₹{room.Rate__c}</div>
+                                <div class="slds-align_absolute-center slds-m-top_medium">
+                                    <lightning-button variant="brand" label="Book Room"
+                                        onclick={handleClickofBookRoom}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </template>
+
+
+
+            <!-- Template three -->
+            <template if:true={ConnectingRoomsTemplate}>
+                <lightning-layout-item size="12" small-device-size="8" medium-device-size="8" large-device-size="8"
+                    padding="horizontal-small">
+                    <template for:each={ConnectingRooms} for:item="room">
+                        <div key={room.Id} class="all-rooms slds-box">
+                            <div class="image">
+                                <lightning-formatted-rich-text
+                                    value={room.Room_Image__c}></lightning-formatted-rich-text>
+                            </div>
+                            <div class="room-info">
+                                <div class="slds-text-heading_large">{room.Hotel__r.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Room_Type__c}</div>
+                                <div class="slds-text-heading_medium">{room.Status__c}</div>
+                                <div class="slds-text-heading_medium">₹{room.Rate__c}</div>
+                                <div class="slds-align_absolute-center slds-m-top_medium">
+                                    <lightning-button variant="brand" label="Book Room"
+                                        onclick={handleClickofBookRoom}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </template>
+
+
+            <!-- Template four -->
+            <template if:true={DeluxeRoomsTemplate}>
+                <lightning-layout-item size="12" small-device-size="8" medium-device-size="8" large-device-size="8"
+                    padding="horizontal-small">
+                    <template for:each={DeluxeRooms} for:item="room">
+                        <div key={room.Id} class="all-rooms slds-box">
+                            <div class="image">
+                                <lightning-formatted-rich-text
+                                    value={room.Room_Image__c}></lightning-formatted-rich-text>
+                            </div>
+                            <div class="room-info">
+                                <div class="slds-text-heading_large">{room.Hotel__r.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Room_Type__c}</div>
+                                <div class="slds-text-heading_medium">{room.Status__c}</div>
+                                <div class="slds-text-heading_medium">₹{room.Rate__c}</div>
+                                <div class="slds-align_absolute-center slds-m-top_medium">
+                                    <lightning-button variant="brand" label="Book Room"
+                                        onclick={handleClickofBookRoom}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </template>
+
+
+
+            <!-- Template Five -->
+            <template if:true={DoubleRoomsTemplate}>
+                <lightning-layout-item size="12" small-device-size="8" medium-device-size="8" large-device-size="8"
+                    padding="horizontal-small">
+                    <template for:each={DoubleRooms} for:item="room">
+                        <div key={room.Id} class="all-rooms slds-box">
+                            <div class="image">
+                                <lightning-formatted-rich-text
+                                    value={room.Room_Image__c}></lightning-formatted-rich-text>
+                            </div>
+                            <div class="room-info">
+                                <div class="slds-text-heading_large">{room.Hotel__r.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Room_Type__c}</div>
+                                <div class="slds-text-heading_medium">{room.Status__c}</div>
+                                <div class="slds-text-heading_medium">₹{room.Rate__c}</div>
+                                <div class="slds-align_absolute-center slds-m-top_medium">
+                                    <lightning-button variant="brand" label="Book Room"
+                                        onclick={handleClickofBookRoom}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </template>
+
+
+
+
+            <!-- Template seven -->
+            <template if:true={SuiteRoomsTemplate}>
+                <lightning-layout-item size="12" small-device-size="8" medium-device-size="8" large-device-size="8"
+                    padding="horizontal-small">
+                    <template for:each={SuiteRooms} for:item="room">
+                        <div key={room.Id} class="all-rooms slds-box">
+                            <div class="image">
+                                <lightning-formatted-rich-text
+                                    value={room.Room_Image__c}></lightning-formatted-rich-text>
+                            </div>
+                            <div class="room-info">
+                                <div class="slds-text-heading_large">{room.Hotel__r.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Name}</div>
+                                <div class="slds-text-heading_medium">{room.Room_Type__c}</div>
+                                <div class="slds-text-heading_medium">{room.Status__c}</div>
+                                <div class="slds-text-heading_medium">₹{room.Rate__c}</div>
+                                <div class="slds-align_absolute-center slds-m-top_medium">
+                                    <lightning-button variant="brand" label="Book Room"
+                                        onclick={handleClickofBookRoom}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+
+
+
+    </div>
 </template>

@@ -1,3 +1,34 @@
-.rooms{
-    
+.main-div {
+        left: 0;
+        right: 0;
+}
+
+.first-view {
+        height: 600px;
+        background-color: #DEB887;
+        box-shadow: 5px 5px 5px black;
+}
+
+.roomtypes {
+        background-color: cadetblue;
+        padding: 20px;
+        border-radius: 20PX;
+}
+
+.roomtypes:hover {
+        background-color: white;
+}
+.all-rooms{
+        display: flex;
+        margin: 15px;
+        height:250px ;
+        gap: 20px;
+}
+.image{
+        height: 210px;
+        width: 170px;
+        border: 2px solid black;
+}
+.room-info{
+        gap: 40px;
 }
