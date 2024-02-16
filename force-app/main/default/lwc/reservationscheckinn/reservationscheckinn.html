@@ -1,0 +1,37 @@
+<template>
+
+    <div class="main-div">
+        <!-- Row 1 -->
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12"
+                padding="horizontal-small">
+                <h2 class="slds-text-heading_large slds-m-around_medium">My Bookings</h2>
+
+                <table>
+                    <tr>
+                        <th>Reservation No</th>
+                        <th>Guest Name</th>
+                        <th>Room No</th>
+                        <th>Total Guests</th>
+                        <th>Room Status</th>
+                        <th>CheckIn DateTime</th>
+                        <th>CheckOut DateTime</th>
+                        <th>Paid Amount</th>
+                    </tr>
+                    <template for:each={reservationsdata} for:item="reservation" for:index="index">
+                        <tr key={reservation.Id}>
+                            <td>{reservation.Reservation_Number__c}</td>
+                            <td>{reservation.Name}</td>
+                            <td>{reservation.Room__r.Name}</td>
+                            <td>{reservation.Total_Guest__c}</td>
+                            <td>{reservation.Room_Status__c}</td>
+                            <td>{reservation.Check_In_Date__c}</td>
+                            <td>{reservation.Check_Out_Date__c}</td>
+                            <td>{reservation.Total_Payable_Amount__c}</td>
+                        </tr>
+                    </template>
+                </table>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>
