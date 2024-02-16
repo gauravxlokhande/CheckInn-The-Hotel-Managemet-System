@@ -21,7 +21,7 @@
 .all-rooms{
         display: flex;
         margin: 15px;
-        height:250px ;
+        height:270px ;
         gap: 20px;
 }
 .image{
@@ -31,4 +31,11 @@
 }
 .room-info{
         gap: 40px;
+}
+.modal-first-last-name{
+        display: flex;
+        gap: 10px;
+}
+.model-content{
+        width: 355px;
 }

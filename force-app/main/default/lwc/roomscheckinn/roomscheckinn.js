@@ -1,7 +1,10 @@
 import { LightningElement, track } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import HotelRoom1 from '@salesforce/resourceUrl/HotelRoom1';
 import HotelRoom2 from '@salesforce/resourceUrl/HotelRoom2';
 import fetchAvaliableRooms from '@salesforce/apex/CheckInn.fetchAvaliableRooms';
+import gaveroomrent from '@salesforce/apex/CheckInn.gaveroomrent';
+import CreateBooking from '@salesforce/apex/CheckInn.CreateBooking';
 
 export default class Roomscheckinn extends LightningElement {
     @track HotelRoom1 = HotelRoom1;
@@ -12,105 +15,133 @@ export default class Roomscheckinn extends LightningElement {
     }
 
 
-    @track AllRoomsTemplate = true;
-    @track SingleRomsTemplate = false;
-    @track ConnectingRoomsTemplate = false;
-    @track DeluxeRoomsTemplate = false;
-    @track DoubleRoomsTemplate = false;
-    @track SuiteRoomsTemplate = false;
-
-
+    @track BookRoomTemplate = false;
     @track AvailableRooms = [];
-    @track SingleRooms = [];
-    @track ConnectingRooms = [];
-    @track DeluxeRooms = [];
-    @track DoubleRooms = [];
-    @track SuiteRooms = [];
-
-
+    @track StoreRoomType = '';
+    @track Storeroomrent='';
 
 
     fetchavailableroom() {
         fetchAvaliableRooms()
             .then((result) => {
-                this.AvailableRooms = result;
-                this.SingleRooms = result.filter(item => item.Room_Type__c === 'Single room');
-                this.ConnectingRooms = result.filter(item => item.Room_Type__c === 'Connecting rooms');
-                this.DeluxeRooms = result.filter(item => item.Room_Type__c === 'Deluxe Room');
-                this.DoubleRooms = result.filter(item => item.Room_Type__c === 'Double room');
-                this.SuiteRooms = result.filter(item => item.Room_Type__c === 'Suite');
-
-            
+                this.AvailableRooms = result.filter(item => item.Room_Type__c === this.StoreRoomType);
+                if (this.AvailableRooms.length<=0) {
+                    this.AvailableRooms = result;
+                }
+            // console.log('length of available rooms', this.AvailableRooms.length);  
+               
             }).catch((error) => {
                 alert(error.body.message)
             });
     }
 
 
+    @track StoreCurrentRoomId;
+
+    async handleClickofBookRoom(event) {
+       
+        const roomid = event.currentTarget.dataset.id;
+        this.StoreCurrentRoomId = roomid;
+        // console.log('Fetch Room ID', roomid)
+
+      await  gaveroomrent({ roomId: roomid })
+          .then((result) => {
+              this.Storeroomrent = result;
+          //  console.log('total room rent',result);
+            this.BookRoomTemplate = true;
+        }).catch((error) => {
+        console.log(error.body.message);
+        });
+    }
+
+
+
+
+
 
     OnClickRoomTypes(event) {
         const Roomtype = event.currentTarget.dataset.name;
-
-        switch (Roomtype) {
-
-            case 'All Rooms':
-                this.AllRoomsTemplate = true;
-                this.SingleRomsTemplate = false;
-                this.ConnectingRoomsTemplate = false;
-                this.DeluxeRoomsTemplate = false;
-                this.DoubleRoomsTemplate = false;
-                this.SuiteRoomsTemplate = false;
-                break;
-            case 'Double':
-                this.AllRoomsTemplate = false;
-                this.SingleRomsTemplate = false;
-                this.ConnectingRoomsTemplate = false;
-                this.DeluxeRoomsTemplate = false;
-                this.DoubleRoomsTemplate = true;
-                this.SuiteRoomsTemplate = false;
-
-                break;
-            case 'Single':
-                this.AllRoomsTemplate = false;
-                this.SingleRomsTemplate = true;
-                this.ConnectingRoomsTemplate = false;
-                this.DeluxeRoomsTemplate = false;
-                this.DoubleRoomsTemplate = false;
-                this.SuiteRoomsTemplate = false;
-
-                break;
-            case 'Deluxe Room':
-                this.AllRoomsTemplate = false;
-                this.SingleRomsTemplate = false;
-                this.ConnectingRoomsTemplate = false;
-                this.DeluxeRoomsTemplate = true;
-                this.DoubleRoomsTemplate = false;
-                this.SuiteRoomsTemplate = false;
-
-                break;
-            case 'Connecting rooms':
-                this.AllRoomsTemplate = false;
-                this.SingleRomsTemplate = false;
-                this.ConnectingRoomsTemplate = true;
-                this.DeluxeRoomsTemplate = false;
-                this.DoubleRoomsTemplate = false;
-                this.SuiteRoomsTemplate = false;
-
-                break;
-            case 'Suite':
-                this.AllRoomsTemplate = false;
-                this.SingleRomsTemplate = false;
-                this.ConnectingRoomsTemplate = false;
-                this.DeluxeRoomsTemplate = false;
-                this.DoubleRoomsTemplate = false;
-                this.SuiteRoomsTemplate = true;
-
-                break;
-            default:
-
-                break;
-        }
+        this.StoreRoomType = Roomtype;
+        this.fetchavailableroom();
     }
 
+    OnClickBookRoomModalFalse() {
+        this.BookRoomTemplate = false;
+    }
+
+
+
+    @track FirstName;
+    @track LastName;
+    @track Totalmembers;
+    @track Checkindatetime;
+    @track Checkoutdatetime;
+    @track totalAmount;
+
+
+    OnChangeFirstName(event) {
+        this.FirstName = event.target.value;
+    }
+
+    OnChangeLastName(event) {
+        this.LastName = event.target.value;
+    }
+
+
+    OnChangeTotalMembers(event) {
+        this.Totalmembers = event.target.value;
+    }
+
+    OnChangeCheckInDatetime(event) {
+        this.Checkindatetime = event.target.value;
+    }
+
+    OnChangeCheckoutdatetime(event) {
+        this.Checkoutdatetime = event.target.value;
+    }
+
+    EnterTotalPayableAmount(event) {
+        this.totalAmount = event.target.value;
+    }
+
+
+
+    handleClickOfBookRoom() {
+        console.log('room rent from org',this.Storeroomrent);
+        console.log('room rent from user',this.totalAmount);
+        if (this.Storeroomrent == this.totalAmount) {
+        CreateBooking({ FirstName: this.FirstName, LastName: this.LastName, TotalMembers: this.Totalmembers, Checkindatetime: this.Checkindatetime, checkoutdatetime: this.Checkoutdatetime, totalpayableamount: this.totalAmount,RoomName:this.StoreCurrentRoomId })
+        .then((result) => {
+            this.dispatchEvent(new ShowToastEvent({
+                message: result,
+                variant: "success"
+            }));
+            this.makenullalldata();
+            this.BookRoomTemplate = false;
+            this.fetchavailableroom();
+        }).catch((error) => {
+            this.dispatchEvent(new ShowToastEvent({
+                message: error.body.message,
+                variant: "error"
+            }));
+        });
+        } else {
+            this.dispatchEvent(new ShowToastEvent({
+                title: "Please pay total rent for room",
+                variant: "warning"
+            }));
+    }
+    }
+
+
+
+    makenullalldata() {
+        this.FirstName = null;
+        this.LastName = null;
+        this.Totalmembers = null;
+        this.Checkindatetime = null;
+        this.Checkoutdatetime = null;
+        this.totalAmount = null;
+  }
 
 }
