@@ -1,0 +1,18 @@
+<template>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12"
+            padding="horizontal-small">
+
+            <template for:each={StoreServices} for:item="service">
+                <div class="whole-data slds-border_top slds-border_bottom" key={service.Id}>
+                    <h1>{service.Room__r.Name}</h1>
+                    <h1>{service.Guest__r.Name}</h1>
+                    <h1>{service.Email__c}</h1>
+                    <h1>{service.Service_Request__c}</h1>
+
+                </div>
+            </template>
+
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
