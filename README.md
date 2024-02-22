@@ -1,3 +1,23 @@
+## TO Explore the CheckInn 
+
+# Login As a user.
+```
+Email: gidijov955@fkcod.com
+```
+```
+Password: Gaurav@1234
+```
+
+# Login As a Admin.
+```
+Email: jobijib230@ebuthor.com
+```
+```
+Password: Pass@123
+```
+
+
+
 # Whole concept that i used in CheckInn
 
 ## Flow Used:
@@ -31,12 +51,13 @@
 
 
 # CheckInn Authenticate Admin:
-![Screenshot 2024-02-22 165229](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/1c1c99b3-1353-43fa-9d7e-af3f5846eab2)
-![Screenshot 2024-02-22 165219](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/4294a88e-fc0f-489e-bb1e-41e442523816)
-![Screenshot 2024-02-22 165209](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/16cb3302-cc7c-4eef-b540-ef17ca47c30d)
-![Screenshot 2024-02-22 165200](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/2b414c56-12e3-4fa8-8c29-11f869390b4f)
-![Screenshot 2024-02-22 165142](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/fddb26e7-514a-47f3-ae6b-b06b6d182c64)
 ![Screenshot 2024-02-22 165133](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/6090f4af-6c42-4e2c-9df8-b29c7ab6f25c)
+![Screenshot 2024-02-22 165142](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/fddb26e7-514a-47f3-ae6b-b06b6d182c64)
+![Screenshot 2024-02-22 165200](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/2b414c56-12e3-4fa8-8c29-11f869390b4f)
+![Screenshot 2024-02-22 165209](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/16cb3302-cc7c-4eef-b540-ef17ca47c30d)
+![Screenshot 2024-02-22 165219](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/4294a88e-fc0f-489e-bb1e-41e442523816)
+![Screenshot 2024-02-22 165229](https://github.com/gaurravlokhande/CheckInn-The-Hotel-Managemet-System/assets/119065314/1c1c99b3-1353-43fa-9d7e-af3f5846eab2)
+
 
 
 
