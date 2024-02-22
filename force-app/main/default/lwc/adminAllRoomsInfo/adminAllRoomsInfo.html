@@ -1,3 +1,83 @@
 <template>
-    
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+
+            <div class="add-room slds-p-around_small">
+                <lightning-button variant="brand" label="+ Add Rooms" onclick={handleClickOfAddRoom}></lightning-button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Room No</th>
+                        <th>Hotel Name</th>
+                        <th>Room Rent</th>
+                        <th>Room Type</th>
+                        <th>Room Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={StoreAllRooms}>
+                        <template for:each={StoreAllRooms} for:item="room">
+                            <tr key={room.Id}>
+                                <td>{room.Name}</td>
+                                <td>{room.Hotel__r.Name}</td>
+                                <td>{room.Rate__c}</td>
+                                <td>{room.Room_Type__c}</td>
+                                <td>{room.Status__c}</td>
+                            </tr>
+                        </template>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- modal start -->
+    <template if:true={isShowModal}>
+
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add New Rooms
+                    </h2>
+                </header>
+
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-record-edit-form object-api-name="Room__c" onsuccess={handleSuccess}>
+                        <lightning-messages></lightning-messages>
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                        <lightning-input-field field-name="Hotel__c"></lightning-input-field>
+                        <lightning-input-field field-name="Rate__c"></lightning-input-field>
+                        <lightning-input-field field-name="Room_Type__c"></lightning-input-field>
+                        <lightning-input-field field-name="Status__c"></lightning-input-field>
+                        <!-- submit -->
+                        <lightning-button class="slds-m-top_medium slds-align_absolute-center" variant="brand"
+                            type="submit" label="Add Room">
+                        </lightning-button>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <!-- modal end -->
+
+
+
 </template>
