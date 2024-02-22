@@ -1,10 +1,10 @@
 <template>
 
-    <lightning-layout multiple-rows>
 
 
-        <lightning-layout-item size="12" small-device-size="12" medium-device-size="5" large-device-size="5"
-            padding="horizontal-small">
+    <!-- Row 1 -->
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_5-of-12 slds-large-size_5-of-12">
             <div class="main-div slds-box">
                 <p class=" slds-text-heading_medium">Please Describe below What Service You Want,
                     W'll
@@ -19,34 +19,52 @@
                         onclick={handleClickOfSubmitRequest}></lightning-button>
                 </div>
             </div>
-        </lightning-layout-item>
+        </div>
 
 
 
-        <lightning-layout-item size="12" small-device-size="12" medium-device-size="7" large-device-size="7">
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>Request No</th>
-                        <th>Room No</th>
-                        <th>Guest Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <template for:each={StoreServiceReqData} for:item="sq" for:index="index">
-                        <tr key={sq.Id}>
-                            <td>{sq.Name}</td>
-                            <td>{sq.Room__r.Name}</td>
-                            <td>{sq.Guest__r.Name}</td>
-                            <td><lightning-formatted-rich-text
-                                    value={sq.Service_Request__c}></lightning-formatted-rich-text></td>
-                        </tr>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_7-of-12 slds-large-size_7-of-12">
+            <div class="slds-grid slds-wrap">
+
+
+                <template for:each={serviceRequests} for:item="service">
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12  slds-p-around_small"
+                        key={service.Id}>
+                        <div key={service.Id} class="slds-box main-cls">
+                            <div class="info">
+                                <h1><b>Request No:</b> {service.Name}</h1>
+                                <h1><b>Room No:</b> {service.Room__r.Name}</h1>
+                                <h1><b>Guest Name:</b> {service.Guest__r.Name}</h1>
+                                <h1> <b>Email:</b> {service.Email__c}</h1>
+                            </div>
+
+                            <div class="description">
+                                <b>Description:</b>
+                                <lightning-formatted-rich-text
+                                    value={service.Service_Request__c}></lightning-formatted-rich-text>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <template for:each={service.Reply_ServiceRequests__r} for:item="reply">
+                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_3-of-12  slds-p-around_small"
+                            key={reply.Id}>
+                            <div key={reply.Id} class="slds-box desctxt">
+                                <!-- <div><b>Reply No: </b>{reply.Name}</div> -->
+                                <div>{reply.Reply__c}</div>
+                            </div>
+                        </div>
                     </template>
-                </tbody>
-            </table>
+
+                </template>
 
 
-        </lightning-layout-item>
-    </lightning-layout>
+
+
+            </div>
+
+        </div>
+    </div>
 </template>

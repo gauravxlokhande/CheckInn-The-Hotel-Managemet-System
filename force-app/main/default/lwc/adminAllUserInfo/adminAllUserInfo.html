@@ -1,0 +1,21 @@
+<template>
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+                <template if:true={AllUsers} for:each={AllUsers} for:item="user">
+                    <tr key={user.Id}>
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                </template>
+            </table>
+        </div>
+    </div>
+</template>

@@ -3,14 +3,24 @@ import createAccountAndContact from '@salesforce/apex/CheckInn.createAccountAndC
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 
-export default class Signup extends NavigationMixin (LightningElement) {
+export default class Signup extends NavigationMixin(LightningElement) {
 
 
+    get options() {
+        return [
+            { label: 'CheckInn User', value: '00e5j000000SUnQAAW' },
+            { label: 'CheckInn Admin', value: '00e5j000000SVKyAAO' },
+        ];
+    }
+
+    @track ProfileValue = '';
     @track FirstName = '';
     @track LastName = '';
     @track Email = '';
     @track Password = '';
     @track ConfirmPassword = '';
+
+    
 
     handleFirstNameChange(event) {
         this.FirstName = event.target.value;
@@ -31,36 +41,40 @@ export default class Signup extends NavigationMixin (LightningElement) {
     handleConfirmPasswordChange(event) {
         this.ConfirmPassword = event.target.value;
     }
+    handleChangeOfCombox(event) {
+        this.ProfileValue = event.detail.value;
+    }
+
 
     handleClickSignUp() {
 
-        if (this.Password ===this.ConfirmPassword) {
-        createAccountAndContact({ firstName: this.firstName, lastName: this.LastName, email: this.Email, Password: this.Password })
-            .then((result) => {
+        if (this.Password === this.ConfirmPassword) {
+            createAccountAndContact({ firstName: this.firstName, lastName: this.LastName, email: this.Email, Password: this.Password, ProfileId: this.ProfileValue })
+                .then((result) => {
 
-                this.dispatchEvent(new ShowToastEvent({
-                    title: "Registered Successfull.",
-                    variant: "success"
-                }));
+                    this.dispatchEvent(new ShowToastEvent({
+                        title: "Registered Successfull.",
+                        variant: "success"
+                    }));
 
-                this[NavigationMixin.Navigate]({
-                    type: "standard__webPage",
-                    attributes: {
-                       url: "https://gauravlokhande-dev-ed.develop.my.site.com/CheckInn/login"
-                    }
+                    this[NavigationMixin.Navigate]({
+                        type: "standard__webPage",
+                        attributes: {
+                            url: "https://gauravlokhande-dev-ed.develop.my.site.com/CheckInn/login"
+                        }
+                    });
+                }).catch((error) => {
+                    this.dispatchEvent(new ShowToastEvent({
+                        title: "Error While Registering Yourself",
+                        message: error.body.message,
+                        variant: "error"
+                    }));
                 });
-            }).catch((error) => {
-               this.dispatchEvent(new ShowToastEvent({
-                title: "Error While Registering Yourself",
-                   message: error.body.message,
-                   variant: "error"
-               }));
-            });
         } else {
-          this.dispatchEvent(new ShowToastEvent({
-              title: "Password not matched.",
-              variant: "warning"
-          }));
+            this.dispatchEvent(new ShowToastEvent({
+                title: "Password not matched.",
+                variant: "warning"
+            }));
         }
     }
 

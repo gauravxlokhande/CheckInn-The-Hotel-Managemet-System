@@ -9,7 +9,7 @@ export default class Servicerequestscheckinn extends LightningElement {
         this.fetchservicerequests();
     }
 
-    @track myVal='';
+    @track myVal = '';
 
     handleChangeovvalue(event) {
         this.myVal = event.target.value;
@@ -19,35 +19,35 @@ export default class Servicerequestscheckinn extends LightningElement {
 
     handleClickOfSubmitRequest() {
         InsertServiceRequest({ ServiceText: this.myVal })
-        .then((result) => {
-       this.dispatchEvent(new ShowToastEvent({
-           title: "Service Request Submit Successfully",
-           variant: "success"
-       }));
-            this.myVal = '';
-            this.fetchservicerequests();
-        }).catch((error) => {
-            this.dispatchEvent(new ShowToastEvent({
-                title: "Error While Submitting Request",
-                variant: "warning"
-            }));
-        });
+            .then((result) => {
+                this.dispatchEvent(new ShowToastEvent({
+                    title: "Service Request Submit Successfully",
+                    variant: "success"
+                }));
+                this.myVal = '';
+                this.fetchservicerequests();
+            }).catch((error) => {
+                this.dispatchEvent(new ShowToastEvent({
+                    title: "Error While Submitting Request",
+                    variant: "warning"
+                }));
+            });
     }
 
-    @track StoreServiceReqData = [];
+    @track serviceRequests = [];
 
 
     fetchservicerequests() {
         fetchServiceRequest()
             .then((result) => {
-                this.StoreServiceReqData = result;
-    console.log(result);
-        }).catch((error) => {
-            
-        });
-        
+                this.serviceRequests = result;
+                console.log(result);
+            }).catch((error) => {
+
+            });
+
     }
 
 
-    
+
 }

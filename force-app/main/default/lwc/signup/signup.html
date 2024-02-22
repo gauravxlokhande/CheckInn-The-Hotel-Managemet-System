@@ -27,6 +27,11 @@
                         onblur={handleLastNameChange}></lightning-input>
                     <lightning-input class="input" type="email" placeholder="Email" value={Email}
                         onblur={handleEmailChange}></lightning-input>
+
+                    <lightning-combobox class="input" value={ProfileValue} placeholder="Select Profile"
+                        options={options} onchange={handleChangeOfCombox}></lightning-combobox>
+
+
                     <lightning-input class="input" type="password" placeholder="Enter Password" value={Password}
                         onblur={handlePasswordChange}></lightning-input>
                     <lightning-input class="input" type="password" placeholder="Confirm Password"
