@@ -4,15 +4,15 @@
         <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
             <table>
                 <tr>
-                    <th>Company</th>
-                    <th>Contact</th>
-                    <th>Country</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>User profile</th>
                 </tr>
                 <template if:true={AllUsers} for:each={AllUsers} for:item="user">
                     <tr key={user.Id}>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
+                        <td>{user.Name}</td>
+                        <td>{user.Email__c}</td>
+                        <td>{user.CreatedBy.Name}</td>
                     </tr>
                 </template>
             </table>
