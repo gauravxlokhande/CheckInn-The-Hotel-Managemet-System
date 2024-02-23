@@ -30,5 +30,10 @@ public Without sharing class CheckInnAdmin {
        return accList;
    }
    
+    @AuraEnabled
+    Public Static List<Room__c> ShowAllRooms(){
+        List<Room__c> RoomList = [Select Id, Name, Hotel__r.Name,Rate__c,Room_Image__c, Room_Type__c,Status__c From Room__c ORDER BY CreatedDate DESC ];
+        return RoomList;
+    }
    
 }

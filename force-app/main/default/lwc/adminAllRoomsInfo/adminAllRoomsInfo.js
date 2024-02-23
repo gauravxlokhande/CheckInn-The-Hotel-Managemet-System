@@ -44,7 +44,7 @@ export default class AdminAllRoomsInfo extends LightningElement {
             variant: 'success',
         });
         this.dispatchEvent(toastEvent);
-        
+        this.showallroomsAdmin();
         // Close the modal or navigate to another page if needed
     }
 }
