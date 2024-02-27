@@ -8,9 +8,10 @@
 
             <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12"
                 padding="around-small" key={service.Id}>
-                <div class="class-one">
-                    <div key={service.Id} class="slds-box">
-                        <div class="slds-grid slds-wrap">
+                <div class="class-one slds-box"
+                    style="background-color: rgb(231, 165, 41); color:white; border-radius: 40px 40px 0 40px;">
+                    <div key={service.Id} class="">
+                        <div class="slds-grid slds-wrap slds-p-left_large">
                             <div
                                 class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12">
                                 <h1><b>Request No:</b> {service.Name}</h1>
@@ -38,7 +39,8 @@
             <template for:each={service.Reply_ServiceRequests__r} for:item="reply">
                 <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="4"
                     padding="around-small" key={reply.Id}>
-                    <div key={reply.Id} class="slds-box">
+                    <div key={reply.Id} class="slds-box slds-m-left_large"
+                        style="background-color: #aac0d2; color:black; border-radius: 0px 40px 40px 40px">
                         <div><b>Reply No: </b>{reply.Name}</div>
                         <div>{reply.Reply__c}</div>
                     </div>

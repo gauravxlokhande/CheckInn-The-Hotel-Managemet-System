@@ -1,8 +1,32 @@
 import { LightningElement, track } from 'lwc';
 import FetchAllHotels from '@salesforce/apex/CheckInn.FetchAllHotels';
 import HotelImage from '@salesforce/resourceUrl/HotelImage';
+import thirdpartycss from '@salesforce/resourceUrl/thirdpartycss';
+import { loadStyle } from 'lightning/platformResourceLoader';
 
 export default class Homecheckinn extends LightningElement {
+
+
+    @track FirstLoad = true;
+
+    connectedCallback() {
+       if (this.FirstLoad) {
+           loadStyle(this, thirdpartycss)
+               .then((result) => {
+                   console.log('CSS loaded successfully');
+                   this.FirstLoad = false;
+               })
+               .catch((error) => {
+                   console.error('Error loading CSS: ', error);
+               });
+       }
+    }
+
+
+
+
+
+
 
     @track Address;
     @track AvailableRooms;

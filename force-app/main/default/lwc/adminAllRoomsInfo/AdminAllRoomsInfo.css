@@ -11,3 +11,12 @@ table, td, th {
   th, td {
     padding: 15px;
   }
+  th{
+    background-color: black;
+    color: white;
+  }
+  td{
+    background-color: #AAC0D2;
+    font-weight: bolder;
+    color: black;
+  }

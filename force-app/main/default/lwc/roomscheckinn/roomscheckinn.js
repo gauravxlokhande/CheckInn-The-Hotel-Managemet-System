@@ -5,8 +5,28 @@ import HotelRoom2 from '@salesforce/resourceUrl/HotelRoom2';
 import fetchAvaliableRooms from '@salesforce/apex/CheckInn.fetchAvaliableRooms';
 import gaveroomrent from '@salesforce/apex/CheckInn.gaveroomrent';
 import CreateBooking from '@salesforce/apex/CheckInn.CreateBooking';
+import bootstrap from '@salesforce/resourceUrl/bootstrap';
+import bootstrapjs from '@salesforce/resourceUrl/bootstrapjs';
+import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
+
 
 export default class Roomscheckinn extends LightningElement {
+
+    renderedCallback() {
+        Promise.all([
+            loadStyle(this, bootstrap),
+            loadScript(this, bootstrapjs)
+        ]).then(() => {
+            console.log('Files loaded.');
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+
+    
+
     @track HotelRoom1 = HotelRoom1;
     @track HotelRoom2 = HotelRoom2;
 
