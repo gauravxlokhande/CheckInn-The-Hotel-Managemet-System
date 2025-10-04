@@ -7,10 +7,10 @@
 
 # Login As a user.
 ```
-Email: gidijov955@fkcod.com
+Email: geciwab318@noidos.com
 ```
 ```
-Password: Gaurav@1234
+Password: Gaurav@1906
 ```
 
 # Login As a Admin.
@@ -18,7 +18,7 @@ Password: Gaurav@1234
 Email: jobijib230@ebuthor.com
 ```
 ```
-Password: Pass@123
+Password: Gaurav@1906
 ```
 
 
